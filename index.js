@@ -1,21 +1,21 @@
 //XMLHttpRequest - GET & POST data using Vanilla JavaScript AJAX
 
 const req = new XMLHttpRequest()
-const url = 'https://jsonplaceholder.typicode.com/posts'
+const url = 'https://jsonplaceholder.typicode.com/posts/'
 
 req.open('GET', url) //send a get req to the url
 
 req.onload = (() => {
   //alert('Got a response') //f(x) will be called after loading the data or response frm the server
 
-  if (req.status >= 200 && req.status < 300) {
-    const posts = JSON.parse(req.responseText)
+  if (this.status >= 200 && this.status < 300) {
+    const posts = JSON.parse(this.responseText)
 
     console.log(posts)
-  } else if (req.status === 404) {
+  } else if (this.status === 404) {
     alert('The url wasnt found')
   } else {
-    alert('Unknown error occurre')
+    alert('Unknown error occurred')
   }
 
 })
