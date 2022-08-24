@@ -3,16 +3,24 @@
 const req = new XMLHttpRequest()
 const url = 'https://jsonplaceholder.typicode.com/posts/'
 
-req.open('GET', url) //send a get req to the url
+req.open('POST', url) //send a get/post req to the url
+req.setRequestHeader('Content-Type', 'application/json') //has to set the header that youre going to send a json to the url
+
+const post = {
+  "userId": 1,
+  "title": "El Filibusterismo",
+  "body": "The Life of Chrisostomo Ibarra as Simoun to have his revenge"
+
+}
 
 req.onload = (() => {
   //alert('Got a response') //f(x) will be called after loading the data or response frm the server
 
-  if (this.status >= 200 && this.status < 300) {
-    const posts = JSON.parse(this.responseText)
+  if (req.status >= 200 && req.status < 300) {
+    const post = JSON.parse(req.responseText)
 
-    console.log(posts)
-  } else if (this.status === 404) {
+    console.log(post)
+  } else if (req.status === 404) {
     alert('The url wasnt found')
   } else {
     alert('Unknown error occurred')
@@ -20,7 +28,7 @@ req.onload = (() => {
 
 })
 
-req.send()
+req.send(JSON.stringify(post))
 
 //fetch API
 
