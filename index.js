@@ -1,19 +1,43 @@
+//XMLHttpRequest - GET & POST data using Vanilla JavaScript AJAX
+
+const req = new XMLHttpRequest()
+const url = 'https://jsonplaceholder.typicode.com/posts'
+
+req.open('GET', url) //send a get req to the url
+
+req.onload = (() => {
+  //alert('Got a response') //f(x) will be called after loading the data or response frm the server
+
+  if (req.status >= 200 && req.status < 300) {
+    const posts = JSON.parse(req.responseText)
+
+    console.log(posts)
+  } else if (req.status === 404) {
+    alert('The url wasnt found')
+  } else {
+    alert('Unknown error occurre')
+  }
+
+})
+
+req.send()
+
 //fetch API
 
-fetch('https://reqres.in/api/users/',
+/*fetch('https://reqres.in/api/users/',
   {
     //has to tell fetch that ure gonna pass the json by setting the header
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',   //GET, POST, PATCH, DELETE
     body:
-      JSON.stringify({ name: 'User 1' }) //converts JS obj/value into JSON string
+      JSON.stringify({ name: 'User 1' }) //converts JS obj/value into JSON string. If u forgot to convert this, it will not gonna work
 
   })
   .then(res => {
 
     return res.json()
   })
-  .then(data => console.log(data)).catch(err => console.error(err))
+  .then(data => console.log(data)).catch(err => console.error(err)) */
 
 
 //Output:
